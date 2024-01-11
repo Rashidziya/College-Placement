@@ -17,7 +17,8 @@ bool isArmstrong(int number){
     while(number>0){
         int rem=number%10;
         // pow() return double value
-        // round() make it to int value
+        // round() make it to int value from double or float value to its nearest integer value
+        // to be able to use pow() and round() one have to add <math.h> or <cmath> library in the header.
         ans+=round(pow(rem,digits));
         number=number/10;
     }
