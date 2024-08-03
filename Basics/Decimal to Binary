@@ -1,0 +1,34 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include<cmath>
+#include<cctype>
+#include<algorithm>
+#include<string>
+using namespace std;
+
+// Decimal to Binary Conversion
+// 16 
+
+int calBinary(int num){
+    int result = 0;
+    int i = 1;
+    
+    while(num != 0){
+        int rem = num % 2;
+        result += i*rem;
+        num /= 2;
+        i*= 10;
+    }
+    
+    return result;
+}
+
+int main() {
+    cout<<"Enter A Decimal Number : ";
+    int num;
+    cin>>num;
+    
+    int ans = calBinary(num);
+    cout<<"Binary of the Given Decmial is : "<<ans;
+    return 0;
+}
