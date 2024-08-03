@@ -1,0 +1,30 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include<cmath>
+using namespace std;
+
+// 12 16
+int calLCM(int n1 , int n2){
+    int result ;
+    int maxPossible = n1 * n2;
+    int leastPossible = (n1>n2) ? n1 : n2;
+    
+    for(int i = leastPossible ; i<=maxPossible ; i++){
+        if(i%n1 == 0 && i%n2 == 0){
+            result = i;
+            break;
+        }
+    }
+    
+    return result;
+}
+
+int main() {
+    cout<<"Enter the Number to Calculate the HCF : ";
+    int num1 , num2;
+    cin>>num1>>num2;
+    
+    int ans = calLCM(num1 , num2);
+    cout<<"LCM is : "<<ans;
+    return 0;
+}
