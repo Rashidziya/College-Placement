@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+//120032   -> 121132
+
+int Helper(int n){
+    int temp = n;
+    int i = 1;
+    int result = 0;
+    while(n!=0){
+        int rem = n % 10;
+        if(rem == 0){
+        result += 1*i;
+            i *= 10;
+            n /= 10;
+            continue;
+            
+        }
+        
+        result += rem * i;
+        i *= 10;
+        n /= 10;
+    }
+    
+    return result;
+}
+
+int main() {
+	
+	int n;
+	cin>>n;
+	
+	int ans = Helper(n);
+    cout<<"After Replacing All the 0's with 1's  : "<<ans<<endl;
+
+}
