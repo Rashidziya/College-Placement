@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+// The Function accepts a positive 'n' as its argumetn . A the count of minimum number of
+// squares that adds up to 'n' are...
+
+
+int Helper(int num , vector<int> &dp){
+    
+    // Base Condition 
+    if(num == 0 ){
+        return 0;
+    }
+    
+    if(dp[num] != -1){
+        return dp[num];
+    }
+    
+    int ans = INT_MAX;
+    for(int i = 1; i<= sqrt(num) ;i++ ){
+        dp[num] = min(ans , 1+Helper(num - i*i , dp));
+    }
+    
+    return dp[num];
+}
+
+int main() {
+	
+	int n;
+	cin>>n;
+	
+	vector<int> dp(n+1, -1);
+    int ans = Helper(n , dp);
+    cout<<"The Min. No. of squares to make desired input is : "<<ans<<endl;
+
+}
