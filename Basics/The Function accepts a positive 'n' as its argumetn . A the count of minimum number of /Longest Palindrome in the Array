@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Input :arr[6]=[30, 20, 30, 10, 20, 20]
+// Output: 20 20 20 30 30 10
+
+bool isPalindrome(int num){
+    int temp = num;
+    int result = 0;
+    while(num != 0 ){
+        int rem = num % 10;
+        result = result *10 + rem;
+        
+        num = num / 10;
+    }
+    
+    if(result == temp){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+int main() {
+	// your code goes here
+    vector<int> arr = {1, 121, 55551, 545545, 60000006, 90};
+    int len = arr.size();
+    int result;
+    for(int i=0; i<len; i++){
+        if(isPalindrome(arr[i])){
+            int num = arr[i];
+            int digitlen = floor(log10(num))+1;
+            int resultlen = floor(log10(result))+1;
+            if(digitlen > resultlen){
+                result = num;
+            }
+        }
+    }
+    
+    cout<<result<<endl;
+    return 0;
+}
