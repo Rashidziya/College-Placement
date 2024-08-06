@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void swap(int *a, int *b){
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void sortArray(vector<int> & arr){
+    int len = arr.size();
+    
+    for(int i=1; i<len ; i++){
+        int j = i-1;
+        while(j>=0 && arr[j] > arr[j+1]){
+            swap(arr[j] , arr[j+1]);
+            j = j-1;
+        }
+    }
+}
+
+int main() {
+	// your code goes here
+    vector<int> arr = {12,10,2,45,130 ,22,33,0};
+    // Sorting the Array using insertion sort Algorithm ...
+    sortArray(arr);
+    for(auto nums : arr){
+        cout<<nums<<" ";
+    }
+}
