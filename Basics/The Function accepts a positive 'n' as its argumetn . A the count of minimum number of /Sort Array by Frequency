@@ -1,0 +1,31 @@
+class Solution {
+    static bool comp(pair<int, int> &a, pair<int,int> &b){
+        if(a.second == b.second){
+            return a.first > b.first;
+        }
+        return a.second < b.second;
+    }
+public:
+    vector<int> frequencySort(vector<int>& nums) {
+        int len = nums.size();
+        vector<int> ans;
+
+        map<int, int> myMap;
+        for(int i=0; i<len; i++){
+            myMap[nums[i]]++;
+        }
+
+        // we cannot directly sort the map using the custom Compartor function
+        // so we have to move the map element into the vector<pair<int, int>> vec...
+        vector<pair<int,int>> freqVec(myMap.begin(),myMap.end());
+        sort(freqVec.begin(),freqVec.end(), comp);
+
+        for(auto num : freqVec){
+            for(int i=1; i<= num.second ; i++){
+                ans.push_back(num.first);
+            }
+        }
+
+        return ans;
+    }
+};
