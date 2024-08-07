@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int findMax(vector<int> arr){
+    int len = arr.size();
+    int i = 0;
+    int count = 0;
+    int result = INT_MIN;
+    
+    while(i<len){
+        if(arr[i] == 0){
+            count = 0;
+            i+=1;
+        }else{
+            i+=1;
+            count = count+1;
+            result = max(count , result);
+        }
+        
+    }
+    
+    return result;
+}
+
+int main() {
+	vector<int> arr = {0,1,1,1,0,0,1,1,1,1,1};
+	
+	int ans = findMax(arr);
+	cout<<"Max Consequetive One's : "<<ans<<endl;
+}
