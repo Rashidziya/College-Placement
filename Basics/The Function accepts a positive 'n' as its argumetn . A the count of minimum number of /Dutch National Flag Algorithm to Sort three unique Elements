@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// sort Array Containing only zero and one....
+
+void swap(int *A, int *B){
+    int temp;
+    temp = *A;
+    *A = *B;
+    *B = temp;
+}
+
+void Helper(vector<int> &arr){
+     int len = arr.size();
+     int i = 0;
+     int j = 0;
+     int k = len - 1;
+     
+     while(j<=k){
+         switch(arr[j]){
+            case 0:
+                swap(arr[j] , arr[i]);
+                j++;
+                i++;
+                break;
+            case 1:
+                j++;
+                break;
+            case 2:
+                swap(arr[j] , arr[k]);
+                k--;
+                break;
+               
+         }
+         
+     }
+}
+
+int main() {
+	vector<int> arr = {2,2,0,1,0,1};
+	cout<<"hello";
+	Helper(arr);
+	cout<<"After Sorting : "<<endl;
+	for(auto it : arr){
+	    cout<<it<<" ";
+	}
+	
+}
