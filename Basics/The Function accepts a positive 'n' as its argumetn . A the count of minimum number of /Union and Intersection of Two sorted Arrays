@@ -1,0 +1,76 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void Helper(vector<int> arr1 , vector<int> arr2, vector<int> &unionArr){
+    int i = 0;
+    int j = 0;
+    
+    while(i<arr1.size() && j<arr2.size()){
+        if(arr1[i] == arr2[j]){
+            unionArr.push_back(arr1[i]);
+            i++;
+            j++;
+        }
+        else if(arr1[i] < arr2[j]){
+            unionArr.push_back(arr1[i]);
+            i++;
+        }
+        else if(arr1[i] > arr2[j]){
+            unionArr.push_back(arr2[j]);
+            j++;
+        }
+    }
+    
+    while(i<arr1.size()){
+        unionArr.push_back(arr1[i]);
+        i++;
+    }
+    
+    while(j<arr2[j]){
+        unionArr.push_back(arr2[j]);
+        j++;
+    }
+    
+}
+
+void solve(vector<int> arr1 , vector<int> arr2 , vector<int> &ans){
+    int i = 0;
+    int j = 0;
+    
+    while(i<arr1.size() && j<arr2.size()){
+        if(arr1[i] == arr2[j]){
+            ans.push_back(arr1[i]);
+            i++;
+            j++;
+        }
+        else if(arr1[i] < arr2[j]){
+            i++;
+        }
+        else if(arr1[i] > arr2[j]){
+            j++;
+        }
+    }
+}
+
+int main(){
+    vector<int> arr1 = {1,2,3,4,5,6,7,8};
+    vector<int> arr2 = {1,2,4};
+    
+    vector<int> unionArr;
+    vector<int> intersection;
+    
+    Helper(arr1, arr2, unionArr);
+    
+    cout<<"Printing the Union of Two sorted Array : "<<endl;
+    for(auto arr : unionArr){
+        cout<<arr<<" ";
+    }
+    
+    solve(arr1 , arr2 , intersection);
+    cout<<"\n Printing the intersection of Two Sorted Array : "<<endl;
+    for(auto it : intersection){
+        cout<<it<<" ";
+    }
+    
+    return 0;
+}
