@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Count Possible Decoding Of A Given Digit Sequence
+
+int countPossibleDecoding(string strr , int index ,vector<int> &dp){
+    // base condition
+    if(index >= strr.size()) return 1;
+    else if(strr[index] == '0') return 0;
+    else if(index == strr.size() -1 ) return 1;
+    
+    // Check before making Recursive Call is it calculated Already through the DP vector
+    if(dp[index] != -1) return dp[index];
+    
+    if(strr[index] == '1' || strr[index] == '2' && strr[index + 1] >='0' && strr[index + 1]<='6'){
+        return dp[index] = countPossibleDecoding(strr , index + 2 ,dp) + countPossibleDecoding(strr , index + 1, dp);
+    }
+    
+    return dp[index] = countPossibleDecoding(strr , index + 1 , dp);
+}
+
+int main() {
+	string strr;
+	cin>>strr;
+	vector<int> dp(strr.size() , -1);
+	
+	int ans = countPossibleDecoding(strr , 0 , dp);
+	cout<<"Possible Decoding : "<<ans<<endl;
+	return 0;
+}
