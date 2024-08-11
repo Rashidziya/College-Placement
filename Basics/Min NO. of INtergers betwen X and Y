@@ -1,0 +1,43 @@
+// Accenture Questions..
+
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+min. NO. of integers , you are given a function with arr, x , y / implement the function to count min. no of integers present between x and y in the given array...
+*/
+
+int solve(vector<int> arr , int len , int x , int y){
+    int res =INT_MAX;
+    vector<int> xArr;
+    vector<int> yArr;
+    
+    for(int i=0; i<len; i++){
+        if(arr[i] == x){
+            xArr.push_back(i);
+        }
+        else if(arr[i] == y){
+            yArr.push_back(i);
+        }
+    }
+    
+    for(int i=0; i<xArr.size(); i++){
+        for(int j =0; j<yArr.size(); j++){
+            int ans = abs(xArr[i] - yArr[j]) - 1;
+            res = min(res , ans);
+        }
+    }
+    
+    return res;
+}
+
+int main() {
+	vector<int> vec = {10,3,2,4,6,2,5,5,6,9,7,3};
+	int x = 3;
+	int y = 6;
+	int len = vec.size();
+	
+	int result = solve(vec , len , x , y);
+	cout<<result<<endl;
+	return 0;
+}
