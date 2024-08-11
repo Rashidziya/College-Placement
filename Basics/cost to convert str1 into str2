@@ -1,0 +1,40 @@
+// Accenture previous Year Questions..
+#include <bits/stdc++.h>
+using namespace std;
+
+// Given Two Strings S1 and S2 . our task is to return intgeger value representing 
+// min . cost required to transform string s1 into s2..
+// removing letter cost is 0
+// adding letter cost is 1 
+// swapping letter cost is 0
+
+int main() {
+	
+	string st1 = "ABDYA";
+	string st2 = "AABCCAD";
+	int len = st2.size();
+	map<char,int> myMap;
+	
+	for(int i=0; i<len; i++){
+	    char ch = st2[i];
+	    myMap[ch]++;
+	}
+	
+	// After mapping the desired string...
+	// we will traverse the input string and will find how many letters do we need to make
+	// Equal to the target string...
+	
+	for(int i=0; i<st1.size(); i++){
+	    char ch = st1[i];
+	    myMap[ch]--;
+	}
+	
+	int sum = 0;
+	// now we will traverse the map and sum up the frequency greater than 0;
+	for(auto it = myMap.begin(); it!=myMap.end(); it++){
+	    if(it->second >0)
+	        sum += it->second;
+	}
+	
+	cout<<sum<<endl;
+}
