@@ -1,0 +1,55 @@
+class Solution{   
+public:
+    long maximumSumSubarray(int K, vector<int> &Arr , int N){
+        int len = N;
+        long maxAns = INT_MIN;
+        
+        int i = 0;
+        int j = 0;
+        
+        long currSum = 0;
+        while(j<len){
+            currSum += Arr[j];
+            if( j - i + 1 == K){
+                maxAns = max(maxAns , currSum);
+                j++;
+                currSum -= Arr[i];
+                i++;
+            }else{
+                j++;
+            }
+            
+        }
+        
+        return maxAns;
+    }
+};
+
+/*
+    Slidding Window Approach used to solve this question.. Rather than generating All the SubArray and Calculating 
+    the sum of it and checking which subArray is having max. sum of subarray size k..
+    it has reduced the time complexity significantly from o{n^2) to o(N)...
+
+*/
+
+//{ Driver Code Starts.
+int main() 
+{ 
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int N,K;
+        cin >> N >> K;;
+        vector<int>Arr;
+        for(int i=0;i<N;++i){
+            int x;
+            cin>>x;
+            Arr.push_back(x);
+        }
+        Solution ob;
+        cout << ob.maximumSumSubarray(K,Arr,N) << endl;
+    }
+    return 0; 
+} 
+// } Driver Code Ends
