@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+Given two strings , string A and B . your task is to find the leftover string A after removing all the letters that are present in string A..
+Ex -> AABBCC
+o/p -> CC
+*/
+ 
+
+int main() {
+	int C;
+	int N;
+	cin>>C;
+	cin>>N;
+	
+	int ans = 0;
+	while(N>0){
+	    ans ++;
+	    N = N-C;
+	}
+	
+	cout<<"Total Rounds Taken By Ship is : "<<ans<<endl;
+    return 0;
+}
