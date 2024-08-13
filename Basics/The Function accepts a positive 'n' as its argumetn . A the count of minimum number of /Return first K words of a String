@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+There is String Given and Each word is separated by the Blank space.. we have to return
+the first k Words ...
+My Name is Rashid Reyaz
+ans -> My Name is
+*/
+  
+void Solve(string str , int k , string &ans){
+    int i = 0;
+    
+    while(i<str.length() && k>0){
+        for(int j=i; j<str.length() ; j++){
+            if(str[j] == ' '){
+                string temp = str.substr(i,j-i);
+                ans = ans + temp + " ";
+                i = j+1;
+                k = k-1;
+                break;
+            }
+            else if (j>str.length() && k>0){
+                cout<<"Not Enough Words : "<<endl;
+                return;
+            }
+        }
+    }
+}
+
+
+int main() {
+	string str;
+	getline(cin , str);
+	int k;
+	cin>>k;
+	
+	string ans = "";
+	Solve(str , k, ans);
+	cout<<ans<<endl;
+    return 0;
+}
