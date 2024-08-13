@@ -1,0 +1,80 @@
+class Solution {
+private:
+    static bool comp(pair<string,int> &a, pair<string,int> &b){
+        if(a.second == b.second){
+            return a.first < b.first;
+        }
+        // if freq is not Equal then return which has the more frequecny
+        return a.second > b.second;
+    }
+public:
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        int len = words.size();
+        vector<string> ans;
+        map<string,int> myMap;
+
+        // HashMap to Store the Frequency of Each Stirng
+        for(int i = 0; i<len; i++){
+            string temp = words[i];
+            myMap[temp]++;
+        }
+        // Pair or String and it's Frequency . to sort based on Compartor function (based on Frequency).
+        vector<pair<string,int>> freqVec(myMap.begin(),myMap.end());
+        sort(freqVec.begin(), freqVec.end(), comp);
+
+        // Traverse the freqVec and make answer till we reach to k length
+        for(int i = 0; i<freqVec.size(); i++){
+            if(k == 0) break;
+            string temp = freqVec[i].first;
+            ans.push_back(temp);
+            k --;
+        }
+
+        return ans;
+    }
+};
+
+
+
+we have to make it static to comparator function otherwise it wont work REASON -> The error occurs because you're trying to pass
+the non-static member function comp as a comparator to the sort function. In C++, member functions have an implicit this pointer passed to them, 
+so they cannot be used directly as a comparator in std::sort
+
+other thing we can do is we can use lamda function.. The Same code using lamda function..
+class Solution {
+public:
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        int len = words.size();
+        vector<string> ans;
+        map<string,int> myMap;
+
+        // HashMap to Store the Frequency of Each String
+        for(int i = 0; i < len; i++) {
+            string temp = words[i];
+            myMap[temp]++;
+        }
+
+        // Pair or String and its Frequency, to sort based on comparator function
+        vector<pair<string,int>> freqVec(myMap.begin(), myMap.end());
+
+        // Lambda function as the comparator
+        auto comp = [](pair<string,int> &a, pair<string,int> &b) {
+            if(a.second == b.second) {
+                return a.first < b.first;  // Lexicographical order if frequencies are equal
+            }
+            return a.second > b.second;  // Higher frequency first
+        };
+
+        sort(freqVec.begin(), freqVec.end(), comp);
+
+        // Traverse the freqVec and make answer till we reach the k length
+        for(int i = 0; i < freqVec.size(); i++) {
+            if(k == 0) break;
+            string temp = freqVec[i].first;
+            ans.push_back(temp);
+            k--;
+        }
+
+        return ans;
+    }
+};
