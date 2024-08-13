@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+There are N light bulbs . by pressing a button it also changes the state of all the 
+bulbs which are after that bulb in series. Find the Min. No. of switches pressed to 
+light up All the Bulbs... return integer Value as Answer..
+Given Array where i th element represent the state of the bulb..
+0 -> bulb are off
+1 -> bulb are on
+*/
+
+int Helper(vector<int> bulb , int len){
+    int minPress = 0;
+    int i = 0;
+    
+    while(i<len){
+        if(minPress == 0 || minPress % 2 == 0){
+            if(bulb[i] == 0){
+                minPress += 1;
+                i++;
+            }else{
+                i++;
+            }
+        }else{
+            if(bulb[i] == 1){
+                minPress += 1;
+                i++;
+            }else{
+                i++;
+            }
+        }
+    }
+    
+    return minPress;
+}
+
+int main() {
+	vector<int> bulb = {0,0,1,0,1,1,0,0};
+    int len = bulb.size();
+    
+    int ans = Helper(bulb , len);
+    cout<<"Min Press To Switch All The Bulbs : "<<ans<<endl;
+    return 0;
+}
