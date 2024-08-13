@@ -1,0 +1,44 @@
+// Find out the Logest Prime SubArray AFter Removing At most One element...
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+bool isPrime(int n){
+    if(n==1 || n==2) return true;
+    
+    for(int i=2; i<=n/2; i++){
+        if(n%i == 0) return false;
+    }
+    return true;
+}
+
+int FindMaxSubArr(vector<int> arr , int len){
+    int result = INT_MIN;
+
+    for(int i=0; i<len; i++){
+        int j = 0;
+        int count = 0;
+        while(j<len){
+            if(i==j) j++;
+            else if (isPrime(arr[j])){
+                count++;
+                result = max(result , count);
+                j++;
+            }else{
+                count = 0;
+                j++;
+            }
+        }
+    }
+
+    return result;
+}
+
+int main(){
+    vector<int> arr = {2,3,5,7,4,2,3,5,7,11,12};
+    int len = arr.size();
+    int ans = FindMaxSubArr(arr , len);
+    cout<<"Max Prime Sub Array : length is :-> "<<ans<<endl;
+    return 0;
+}
