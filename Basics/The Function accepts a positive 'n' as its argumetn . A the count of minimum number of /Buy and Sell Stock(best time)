@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    vector<int> price = {7, 1, 5, 3,8 , 4};
+    int len = price.size();
+    
+    int i =0;
+    int maxProfit = INT_MIN;
+    // we know that we have to buy any stock before than to sell
+    int buyingPrice = price[0];
+    for(int i=1; i<len; i++){
+        int sellPrice = price[i];
+        maxProfit = max(maxProfit , sellPrice - buyingPrice);
+        // check if we can Buy less than the current Buy price
+        buyingPrice = min(buyingPrice , price[i]);
+    }
+    if(maxProfit < 0){
+        cout<<"Profit is not enough : "<<endl;
+    }else{
+        cout<<"Max Profit We can make : "<<maxProfit<<endl;
+    }
+  
+    return 0;
+}
