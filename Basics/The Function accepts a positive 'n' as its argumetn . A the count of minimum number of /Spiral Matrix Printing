@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int row;
+    int col;
+    
+    cin>>row;
+    cin>>col;
+    
+    int arr[row][col] ;
+    for(int i =0; i<row; i++){
+        for(int j = 0; j<col; j++){
+            cin>>arr[i][j];
+        }
+    }
+    
+    int top =0;
+    int bottom = row - 1;
+    int right = col - 1;
+    int left = 0;
+    int ptr = 0;
+    int matSize = row * col;
+    
+    // Now Traversing the matrix in sprial order :
+    vector<int> ans(matSize);
+    
+    while(ptr < matSize){
+        // returning the top element
+        for(int i = left; i<=right ; i++){
+            ans[ptr] = arr[top][i];
+            ptr ++;
+        }
+        top ++;
+        
+        // returning the right boundry element
+        for(int i=top; i<= bottom; i++){
+            ans[ptr] = arr[i][right];
+            ptr++;
+        }
+        right --;
+        
+        // returnign the botom boundary element
+        for(int i=right; i>=left ; i--){
+            ans[ptr] = arr[i][bottom];
+            ptr ++;
+        }
+        bottom --;
+        
+        // returning the left boundary elements
+        for(int i=bottom; i>=top; i--){
+            ans[ptr] = arr[i][left];
+            ptr ++;
+        }
+        left ++;
+    }
+    
+    for(int i = 0; i<ans.size(); i++){
+        cout<<ans[i]<<" ";
+    }
+    return 0;
+}
