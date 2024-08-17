@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+    Given an array of length N, Find the length of the largest subarray which
+    contains equal no of zero's and one's..
+    input -> 1 0 1 1 1 0 0
+    o/p -> 6 
+*/
+
+int Helper(int n, vector<int> arr){
+    int maxRes = INT_MIN;
+    int len = arr.size();
+    map<int , int> mp;
+    int currSum = 0;
+    
+    for(int i =0; i<len; i++){
+        if(arr[i] == 0){
+            arr[i] = -1;
+        }
+    }
+    
+    for(int i =0; i<len; i++){
+        currSum += arr[i];
+        if(currSum == 0){
+            maxRes = max(maxRes , i+1);
+        }
+        // if currSum already exist before this 
+        else if(mp.find(currSum) != mp.end()){
+            maxRes = max(maxRes , i - mp[currSum]);
+        }
+        else {
+            mp[currSum] = i;
+        }
+    }
+    
+    
+    return maxRes ;
+}
+
+int main() {
+	int N;
+	cin>>N;
+	vector<int> arr(N,0);
+	for(int i =0; i<N; i++){
+	    cin>>arr[i];
+	}
+
+    int largestResult = Helper(N, arr);
+    cout<<"Largest Length of Subarray which Contains equal 0's and 1's is : "<<largestResult<<endl;
+	return 0;
+}
