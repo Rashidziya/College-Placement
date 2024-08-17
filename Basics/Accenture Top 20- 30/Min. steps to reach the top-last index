@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+    Find the Min No. of Steps to reach out to the top..
+    N -> size of the array
+    m- > max steps we are allowed to take from specific position..
+    return -> min. no. of steps we would require to reach to the top/last index of
+    the array....
+    
+    
+    used Greedy approach that each step we will take the local best option..
+    which is in this case we are taking M steps at each local step. untill we are allowed.
+    
+*/
+
+
+int main() {
+	int N;
+	cin>>N;
+	
+	int M;
+	cin>>M;
+	
+	// base case 
+	if(M == N){
+	    cout<<"The min step is : 1 "<<endl;
+	    return 0;
+	} 
+	else if (M>N){
+	    int ans = M -1;
+	    cout<<"The Min step is : "<<ans<<endl;
+	    return 0;
+	}
+ 	int count = 0;
+	int i = -1 + M;
+	while(i<N){
+	   
+	    count ++;
+	    cout<<i<<" : "<<count<<endl;
+	    if(i+M >= N){
+	        break;
+	    }
+	    i += M;
+	}
+    
+    count = count + (N - i -1);
+    cout<<"The Min steps to reach top/last index is : "<<count<<endl;
+	return 0;
+}
