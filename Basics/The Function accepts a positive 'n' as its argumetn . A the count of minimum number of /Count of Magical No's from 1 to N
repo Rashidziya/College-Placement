@@ -1,0 +1,44 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+/*
+    Find the count of magical numbers from 1 to N .
+    A magical Number is defined by ---
+    1. Replace all 0 with 1 and 1 with 2 in the binary string..
+    2. Calculate the sum of digits modified binary string. if sum is odd 
+        thenn it is magical numbers.. and update the count and return count...
+*/
+
+int main() {
+	int N = 30;
+// 	cin>>N;
+	
+	// convert the N in to corresponding binary representation..
+	int dec = 0;
+	int i = 1;
+	while(N!=0){
+	    int rem = N % 2;
+	    dec += rem * i;
+	    i *= 10;
+	    N /= 2;
+	}
+	cout<<dec<<endl;
+	
+	// Now Find the magical No. count...
+	int countZero = 0;
+	while(dec != 0){
+	    int rem = dec % 10;
+	    if(rem == 0){
+	        countZero ++;
+	    }
+	    dec = dec / 10;
+	}
+	
+	if(countZero % 2 != 0){
+	    cout<<"magical "<<countZero<<endl;
+	}else {
+	    cout<<"Not magical "<<countZero<<endl;
+	}
+	return 0;
+}
