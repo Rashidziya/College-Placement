@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// SeiveofEratosthense
+
+int main() {
+	int N;
+	cin>>N;
+	
+	//Findding the Nth Prime Number
+	vector<bool> prime(500, true);
+	prime[0] = false;
+	prime[1] = false;
+	int len = prime.size();
+	int i;
+	int count = 0;
+	// mark all the Non Prime index as false
+	for(i=2; i<=sqrt(len); i++){
+	    if(prime[i]){
+	        for(int p = i*i; p<=len; p+=i){
+	            prime[p] = false;
+	        }
+	       
+	    }
+	}
+	
+	for(int i=2; i<=len; i++){
+	    if(prime[i]){
+	        count ++;
+	        if(count == N){
+	            cout<<"The "<<N<<" th Prime is : "<<i<<endl;
+	            break;
+	        }
+	    }
+	}
+	
+	
+// 	int count = 0;
+// 	while(count != N){
+	    
+// 	}
+// 	cout<<"The "<<N<<" th prime Number is : "<<i<<endl;
+    return 0;
+}
