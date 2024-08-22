@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void solve(vector<int> arr, int target, vector<vector<int>> &ans, vector<int> temp, int index){
+    // base case 
+    if(index >= arr.size()){
+        return ;
+    }
+    else if (target < 0){
+        return ;
+    }
+    else if (target == 0){
+        ans.push_back(temp);
+        return;
+    }
+    
+    // choices 
+    // if picking 
+    int val = arr[index];
+    temp.push_back(val);
+    solve(arr , target - val , ans , temp, index );
+    temp.pop_back();
+    
+    solve(arr, target, ans, temp, index+1);
+    
+}
+
+int main() {
+	vector<int> arr = {1,2,3};
+	int target = 4;
+	
+	vector<vector<int>> ans;
+	vector<int> temp;
+	solve(arr , target , ans , temp, 0);
+	
+	for(int i =0; i<ans.size(); i++){
+	    for(int j =0; j<ans[i].size(); j++){
+	        cout<<ans[i][j]<<" ";
+	    }
+	    cout<<endl;
+	}
+	
+    return 0;
+}
