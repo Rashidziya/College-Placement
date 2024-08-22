@@ -1,0 +1,32 @@
+class Solution {
+private:
+    
+    int Helper(string text1, string text2, int m, int n){
+        // base case
+        if(m == 0 || n == 0){
+            return 0;
+        }
+        // Check if the VAlue present in dp vector
+        if(dp[m][n] != -1){
+            return dp[m][n];
+        }
+        // Choices  if text1[m] == text2[n] then add this in the answer
+        if(text1[m-1] == text2[n-1]){
+            return dp[m][n] = 1 + Helper(text1, text2, m-1, n-1);
+        }else{
+            // cout<<text1[m]<<" : "<<text2[n]<<endl;
+            return dp[m][n] = max(Helper(text1,text2, m-1,n),Helper(text1, text2, m, n-1));
+        }
+    }
+public:
+    int dp[1005][1005];
+    int longestCommonSubsequence(string text1, string text2) {
+        int m = text1.size();
+        int n = text2.size();
+
+        memset(dp,-1,sizeof(dp));
+        int result = Helper(text1,text2,m,n);
+      
+        return result;
+    }
+};
